@@ -113,6 +113,18 @@ public class NetworkManager {
         }
     }
 
+    /**
+     * Register a message into rawChannel.
+     *
+     * @param <MSG>      message class type
+     * @param id         network id
+     * @param msgClazz   message class
+     * @param msgCreator supplier with new instance of msgClazz
+     */
+    private <MSG extends IPacket> void registerMessage(final int id, final Class<MSG> msgClazz, final Supplier<MSG> msgCreator) {
+        NetworkManager.getPacketType().put(id, new NetworkingMessageEntry<>(msgCreator));
+        NetworkManager.getPacketTypeToID().put(msgClazz, id);
+    }
 
     public static final class NetworkingMessageEntry<MSG extends IPacket> {
 

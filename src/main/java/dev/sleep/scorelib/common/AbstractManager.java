@@ -12,6 +12,10 @@ public abstract class AbstractManager<K, O> {
         this.getInstance().registeredObjectsList.putIfAbsent(key, object);
     }
 
+    public void registerObject(O object) {
+        this.getInstance().registeredObjectsList.putIfAbsent(null, object);
+    }
+
     public HashMap<K, O> getRegisteredObjectList() {
         return this.getInstance().registeredObjectsList;
     }
